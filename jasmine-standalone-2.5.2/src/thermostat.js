@@ -16,3 +16,7 @@ Thermostat.prototype.up = function() {
 Thermostat.prototype.down = function() {
   this._temperature = this._temperature - 1;
 };
+
+Thermostat.prototype.turnOffPowerSaving = function() {
+  this._powerSavingMode = false;
+};
