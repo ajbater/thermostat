@@ -46,4 +46,10 @@ describe('Thermostat', function() {
     thermostat.turnOffPowerSaving();
     expect(thermostat._maxTemperature).toEqual(32);
   });
+
+  it('temperature can be reset with a reset function',function(){
+    thermostat.up();
+    thermostat.reset();
+    expect(thermostat._temperature).toEqual(20);
+  });
 });
