@@ -19,4 +19,5 @@ Thermostat.prototype.down = function() {
 
 Thermostat.prototype.turnOffPowerSaving = function() {
   this._powerSavingMode = false;
+  this._maxTemperature = 32;
 };
