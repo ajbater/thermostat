@@ -1,5 +1,6 @@
 function Thermostat(){
   this._temperature = 20;
+  this.MIN_TEMPERATURE = 10;
 }
 
 Thermostat.prototype.temperature = function() {
