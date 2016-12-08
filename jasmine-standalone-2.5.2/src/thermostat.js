@@ -13,14 +13,22 @@ Thermostat.prototype.currentTemperature = function() {
   return this._temperature;
 };
 
+Thermostat.prototype.isMaximumTemperature = function() {
+    if (this.isPowerSavingModeOn() === false) {
+    return this._temperature === this.MAX_LIMIT_PSM_OFF;
+  }
+    return this._temperature === this.MAX_LIMIT_PSM_ON;
+};
+
+Thermostat.prototype.isPowerSavingModeOn = function() {
+  return this._powerSavingMode === true;
+};
+
 Thermostat.prototype.up = function() {
-  if (this.powerSavingMode === true && this._temperature === this.MAX_LIMIT_PSM_ON) {
+  if (this.isMaximumTemperature()) {
     return;
-  } else if (this.powerSavingMode === false && this._temperature === this.MAX_LIMIT_PSM_OFF) {
-    return;
-  } else {
+  }
     this._temperature += 1;
-  };
 };
 
 Thermostat.prototype.down = function() {
@@ -34,6 +42,10 @@ Thermostat.prototype.turnOffPowerSaving = function() {
   this._powerSavingMode = false;
 };
 
+Thermostat.prototype.turnOnPowerSaving = function() {
+  this._powerSavingMode = true;
+};
+
 Thermostat.prototype.reset = function() {
   this._temperature = this.DEFAULT_TEMP;
 };
@@ -43,7 +55,7 @@ Thermostat.prototype.checkEnergyUsage = function() {
     return 'low-usage';
   } else if (this._temperature >= this.HIGH_ENERGY_USAGE_LIMIT) {
     return 'high-usage';
-  } else {
+  } else  {
     return 'medium-usage';
   }
 };
