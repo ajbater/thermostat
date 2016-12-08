@@ -5,7 +5,7 @@ $(document).ready(function() {
     $("#up").click(function() {
       thermostat.up();
       updateTemperature();
-      
+
     });
     $("#down").click(function() {
       thermostat.down();
@@ -26,5 +26,6 @@ $(document).ready(function() {
 
     function updateTemperature() {
       $('#temperature').text(thermostat._temperature);
+      $('#temperature').attr('class', thermostat.checkEnergyUsage());
     };
 });
